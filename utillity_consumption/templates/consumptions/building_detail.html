@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="container">
+		<h2>Buildings</h2>
+		<p>Building Details</p>
+		<table class="table">
+		<thead>
+			<tr>
+			<th>Building ID</th>
+			<th>Building Name</th>
+			<th>Number of Meters</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+			<td>{{ object.id }}</td>
+			<td>{{ object.name }}</td>
+			<td>{{ object.meter_set.count }}</td>
+			</tr>	
+		</tbody>
+		</table>
+	</div>
+	<div class="container">
+		<h2>Meters</h2>
+		<p>Meter Details</p>
+		<table class="table">
+		<thead>
+			<tr>
+			<th>Meter ID</th>
+			<th>Fuel</th>
+			<th>Unit</th>
+			<th>Consumptions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for meter in object.meter_set.all %}
+			<tr>
+			<td>{{ meter.id }}</td>
+			<td>{{ meter.fuel }}</td>
+			<td>{{ meter.unit }}</td>
+			<td>
+			{% with meter.consumption_set.all as consumptions  %}
+				{% if consumptions.exists %}
+					<table class="table">
+						<thead>
+							<tr>
+							<th>Consumer ID</th>
+							<th>Consumption</th>
+							<th>Reading Date Time</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for consumption in consumptions %}
+								<tr>
+								<td>{{ consumption.id }}</td>
+								<td>{{ consumption.consumption }}</td>
+								<td>{{ consumption.reading_date_time }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endif %}
+			{% endwith %}
+			</td>
+			</tr>
+			{% endfor %}	
+		</tbody>
+		</table>
+	</div>
+
+</div>
+{% endblock content %}

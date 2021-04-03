@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User: {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="container">
+		<h2>Upload Data</h2>
+		<p>Choose what type of data you want to upload (Buildings / Meters / Consumptions / Meter Readings)</p>
+		<form action="/action_page.php" class="was-validated">
+		<div class="row">
+		  <div class="form-group col">
+			<select name="type" class="form-control" id="type" required>
+				<option value="">Select</option>
+				<option value="buildings">Buildings</option>
+				<option value="meters">Meters</option>
+				<option value="consumptions">Consumption</option>
+			  </select>
+			<div class="valid-feedback">Valid.</div>
+			<div class="invalid-feedback">Please fill out this field.</div>
+		  </div>
+		  <div class="form-group col">
+			<input type="file" class="form-control" id="myfile" name="myfile" required>
+			<div class="valid-feedback">Valid.</div>
+			<div class="invalid-feedback">Please fill out this field.</div>
+		  </div>
+		  <div class="form-group col">
+			<button type="submit" class="btn btn-primary">Submit</button>
+		  </div>
+		</div>
+		</form>
+		<hr />
+	</div>
+	<div class="container">
+		<h2>Buildings</h2>
+		<p>Building Details</p>
+		<table class="table border">
+		<thead>
+			<tr>
+			<th>Building ID</th>
+			<th>Building Name</th>
+			<th>Number of Meters</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% if buildings.exists %}
+			{% for building in buildings %}
+			<tr>
+			<td>
+				<a href="{% url 'consumptions:detail' building.id %}">
+				{{ building.id }}
+				</a>
+			</td>
+			<td>{{ building.name }}</td>
+			<td>{{ building.meter_set.count }}</td>
+			</tr>
+			{% endfor %}
+		{% else %}
+			<tr>
+				<td colspan="3">No data available</td>
+			</tr>
+		{% endif %}
+	
+		</tbody>
+		</table>
+	</div>
+</div>
+{% endblock content %}
