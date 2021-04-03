@@ -75,6 +75,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "utillity_consumption.users.apps.UsersConfig",
+    "utillity_consumption.consumptions.apps.ConsumptionsConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
