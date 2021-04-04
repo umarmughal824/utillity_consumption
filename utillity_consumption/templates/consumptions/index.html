@@ -8,7 +8,8 @@
 	<div class="container">
 		<h2>Upload Data</h2>
 		<p>Choose what type of data you want to upload (Buildings / Meters / Consumptions / Meter Readings)</p>
-		<form action="/action_page.php" class="was-validated">
+		<form enctype="multipart/form-data" action="{% url 'consumptions:index' %}" class="was-validated" method="post">
+		{% csrf_token %}
 		<div class="row">
 		  <div class="form-group col">
 			<select name="type" class="form-control" id="type" required>
@@ -32,7 +33,11 @@
 		</form>
 		<hr />
 	</div>
+
 	<div class="container">
+		{% if msg %}
+			<p>{{msg}}</p>
+		{% endif %}
 		<h2>Buildings</h2>
 		<p>Building Details</p>
 		<table class="table border">

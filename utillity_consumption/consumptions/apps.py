@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class ConsumptionsConfig(AppConfig):
-    name = 'utillity_consumption.consumptions'
+    name = "utillity_consumption.consumptions"
 
     def ready(self):
         try:

@@ -8,33 +8,78 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Building',
+            name="Building",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Meter',
+            name="Meter",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fuel', models.CharField(choices=[('G', 'Natural Gass'), ('E', 'Electricity'), ('W', 'Water')], max_length=1)),
-                ('unit', models.CharField(max_length=25)),
-                ('building', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='consumptions.building')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "fuel",
+                    models.CharField(
+                        choices=[
+                            ("G", "Natural Gass"),
+                            ("E", "Electricity"),
+                            ("W", "Water"),
+                        ],
+                        max_length=1,
+                    ),
+                ),
+                ("unit", models.CharField(max_length=25)),
+                (
+                    "building",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="consumptions.building",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Consumption',
+            name="Consumption",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('reading_date_time', models.DateTimeField(auto_now_add=True)),
-                ('consumption', models.FloatField()),
-                ('meter_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='consumptions.meter')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("reading_date_time", models.DateTimeField(auto_now_add=True)),
+                ("consumption", models.FloatField()),
+                (
+                    "meter_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="consumptions.meter",
+                    ),
+                ),
             ],
         ),
     ]
