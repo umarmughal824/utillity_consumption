@@ -44,7 +44,8 @@
 			<td>{{ meter.fuel }}</td>
 			<td>{{ meter.unit }}</td>
 			<td>
-			{% with meter.consumption_set.all as consumptions  %}
+				<a href="{% url 'consumptions:meter-detail' meter.id %}">View Consumption Report (Graph)</a>
+			<!-- {% with meter.consumption_set.all as consumptions  %}
 				{% if consumptions.exists %}
 					<table class="table">
 						<thead>
@@ -65,7 +66,7 @@
 						</tbody>
 					</table>
 				{% endif %}
-			{% endwith %}
+			{% endwith %} -->
 			</td>
 			</tr>
 			{% endfor %}	
