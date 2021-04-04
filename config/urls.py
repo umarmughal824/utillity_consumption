@@ -16,7 +16,10 @@ urlpatterns = [
     path("users/", include("utillity_consumption.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
-    path("consumptions/", include("utillity_consumption.consumptions.urls", namespace="consumptions"))
+    path(
+        "consumptions/",
+        include("utillity_consumption.consumptions.urls", namespace="consumptions"),
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
